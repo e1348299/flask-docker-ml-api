@@ -56,7 +56,14 @@ def predict():
 
     except Exception as e:
         return jsonify({"error": str(e)}), 500
-
+        
+@app.route("/", methods=["GET"])
+def home():
+    return """
+    <h2>Welcome to the Causal Analysis API</h2>
+    <p>Use <code>/get_ate</code> to get the treatment effect.</p>
+    <p>Use <code>/predict</code> with POST and JSON (treatment, spending) to get predicted engagement.</p>
+    """
 #main
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)
