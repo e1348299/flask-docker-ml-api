@@ -4,12 +4,9 @@
 ### 1(a) Use linear regression to estimate the parameters α, τ , and β.
 Model: Ordinary Least Squares regression using statsmodels:
 GET /get_ate endpoint: Returns the Average Treatment Effect (ATE) estimated from your regression model. It helps Understand the overall average impact of treatment on engagement score, after controlling for spending.
-α = 95.9662 
-τ = -9.1057
-β = 1.5149
+α = 95.9662, τ = -9.1057, β = 1.5149
 ### 1(b) Report the estimated ATE (τ) and its statistical significance.
-τ p-value = 0.0004
-This is less than p-value of 0.05 thus it is statistically significant
+τ p-value = 0.0004  This is less than p-value of 0.05 thus it is statistically significant
 ### 1(c) Briefly explain under what assumptions τ can be given a causal interpretation.
 τ from the regression model can be given a causal interpretation under the following assumptions:
 
