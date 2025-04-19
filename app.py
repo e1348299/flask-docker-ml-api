@@ -66,8 +66,15 @@ def home():
 
             input_array = np.array([[1, treatment, spending]])
             prediction = model.predict(input_array)[0]
+            prediction_rounded = round(prediction, 2)
+
+            # Write to output.txt
+            with open("output.txt", "w") as f:
+                f.write(f"Predicted Engagement Score: {prediction_rounded}\n")
+
             return f"""
-                <h2>Predicted Engagement Score: {round(prediction, 2)}</h2>
+                <h2>Predicted Engagement Score: {prediction_rounded}</h2>
+                <p>Saved to output.txt</p>
                 <a href="/">Back</a>
             """
         except Exception as e:
