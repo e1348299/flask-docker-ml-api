@@ -57,12 +57,31 @@ def predict():
     except Exception as e:
         return jsonify({"error": str(e)}), 500
         
-@app.route("/", methods=["GET"])
+@app.route("/", methods=["GET", "POST"])
 def home():
+    if request.method == "POST":
+        try:
+            treatment = int(request.form.get("treatment"))
+            spending = float(request.form.get("spending"))
+
+            input_array = np.array([[1, treatment, spending]])
+            prediction = model.predict(input_array)[0]
+            return f"""
+                <h2>Predicted Engagement Score: {round(prediction, 2)}</h2>
+                <a href="/">Back</a>
+            """
+        except Exception as e:
+            return f"<p>Error: {e}</p><a href='/'>Back</a>"
+
     return """
-    <h2>Welcome to the Causal Analysis API</h2>
-    <p>Use <code>/get_ate</code> to get the treatment effect.</p>
-    <p>Use <code>/predict</code> with POST and JSON (treatment, spending) to get predicted engagement.</p>
+        <h2>Engagement Score Predictor</h2>
+        <form method="post">
+            <label>Treatment (0 or 1):</label><br>
+            <input type="number" name="treatment" required><br><br>
+            <label>Sustainability Spending:</label><br>
+            <input type="number" step="any" name="spending" required><br><br>
+            <input type="submit" value="Predict">
+        </form>
     """
 #main
 if __name__ == "__main__":
