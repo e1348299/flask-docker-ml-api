@@ -48,7 +48,7 @@ Predicted engagement Score: 117.16
 docker build -t treatment-effect-app .
 
 # Run the container
-docker run -p 5000:5000 treatment-effect-app
+docker run -v "$(pwd):/app" -p 5000:5000 treatment-effect-app
 
 # View model coefficients and ATE significance
 add /get_ate at end of browser URL to obtain require coefficients
