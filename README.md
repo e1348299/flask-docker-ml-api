@@ -51,11 +51,14 @@ docker build -t treatment-effect-app .
 docker run -p 5000:5000 treatment-effect-app
 
 # View model coefficients and ATE significance
-curl http://localhost:5000/get_ate
+add /get_ate at end of browser URL to obtain require coefficients
+![image](https://github.com/user-attachments/assets/e7b1cdec-7ec8-48c4-aab9-ac2191589317)
 
 # To return the predicted stakeholder engagement score for a treated firm (W = 1) spending 20 units on sustainability.
-curl -X POST http://localhost:5000/predict \
-  -H "Content-Type: application/json" \
-  -d '{"treatment": 1, "spending": 20}'
+Key in 1 and 20 into input fields as seen below:
+![image](https://github.com/user-attachments/assets/79fc51e7-8d8f-4411-b34c-3c3fd8b1be96)
+
+Output as seen below:
+![image](https://github.com/user-attachments/assets/6dbb7416-a8f1-456a-a50d-58fa04a79f49)
 
 
